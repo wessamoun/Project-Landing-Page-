@@ -18,6 +18,8 @@
  *
  */
 let sectionNum = 0;
+let sections = document.querySelectorAll("section");
+let a = document.getElementsByTagName("a");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -38,6 +40,28 @@ const addSection = function () {
 };
 for (let i = 1; i < 5; i++) addSection();
 // Add class 'active' to section when near top of viewport
+
+function viewPort(inView) {
+  inView.forEach(function (ele) {
+    if(ele.isIntersecting) {
+      ele.target.classList.add("your-active-class");
+    }
+    else {
+      ele.target.classList.remove("your-active-class");
+    }
+  });
+}
+
+let options = {
+  threshold: [0.6]
+};
+
+let observer = new IntersectionObserver(viewPort, options);
+
+for (let section of sections) {
+  observer.observe(section);
+}
+
 
 // Scroll to anchor ID using scrollTO event
 
