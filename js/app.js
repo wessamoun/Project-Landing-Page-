@@ -19,7 +19,7 @@
  */
 let sectionNum = 0;
 let sections = document.querySelectorAll("section");
-let a = document.getElementsByTagName("a");
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -35,7 +35,7 @@ let a = document.getElementsByTagName("a");
 // build the nav
 const addSection = function () {
   sectionNum++;
-  let sectionContent = `<li><a href="#section${sectionNum}" class="menu__link">Section ${sectionNum}</a></li>`;
+  let sectionContent = `<li><a data-section="section${sectionNum}" class="menu__link">Section ${sectionNum}</a></li>`;
   document.querySelector("ul").insertAdjacentHTML("beforeend", sectionContent);
 };
 for (let i = 1; i < 5; i++) addSection();
@@ -43,17 +43,16 @@ for (let i = 1; i < 5; i++) addSection();
 
 function viewPort(inView) {
   inView.forEach(function (ele) {
-    if(ele.isIntersecting) {
+    if (ele.isIntersecting) {
       ele.target.classList.add("your-active-class");
-    }
-    else {
+    } else {
       ele.target.classList.remove("your-active-class");
     }
   });
 }
 
 let options = {
-  threshold: [0.6]
+  threshold: [0.6],
 };
 
 let observer = new IntersectionObserver(viewPort, options);
@@ -64,7 +63,15 @@ for (let section of sections) {
 
 
 // Scroll to anchor ID using scrollTO event
-
+let links = document.querySelectorAll(".menu__link");
+links.forEach(function (link) {
+  link.addEventListener("click", function () {
+    let scrollSection = document.getElementById(
+      link.getAttribute("data-section")
+    );
+    scrollSection.scrollIntoView({ behavior:"smooth",block:"start" });
+  });
+});
 /**
  * End Main Functions
  * Begin Events
