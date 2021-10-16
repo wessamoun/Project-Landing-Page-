@@ -92,6 +92,7 @@ section {
 }
 a.active {
     background: #333;
+    color: #fff !important;  
 }
 
 /* Header Styles */
@@ -218,12 +219,26 @@ section.your-active-class .landing__container::after {
 @keyframes rotate {
 	from {
 		transform: rotate(0deg)
-		           translate(-1em)
-		           rotate(0deg);
+		translate(-1em)
+		rotate(0deg);
 	}
 	to {
 		transform: rotate(360deg)
-		           translate(-1em) 
-		           rotate(-360deg);
+		translate(-1em) 
+		rotate(-360deg);
 	}
+}
+
+
+/* Add section button style */
+.add-section {
+    background-color: white;
+    border: none;
+    padding: 0.5em;
+    margin: 1em auto 0em;
+    border-radius: 50%;
+    font-size: 27px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
 }

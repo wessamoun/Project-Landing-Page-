@@ -17,68 +17,87 @@
  * Define Global Variables
  *
  */
-let sectionNum = 0;
-let sections = document.querySelectorAll("section");
+let navSectionNum = 0;
+let sectionNum = 4;
+const addNavSection = function () {
+  navSectionNum++;
+  let navSectionContent = `<li><a data-section="section${navSectionNum}" class="menu__link">Section ${navSectionNum}</a></li>`;
+  document
+    .querySelector("ul")
+    .insertAdjacentHTML("beforeend", navSectionContent);
+};
+const addSection = function () {
+  sectionNum++;
+  let sectionContent = `<section id="section${sectionNum}" class="" data-nav="Section ${sectionNum}">
+  <div class="landing__container">
+    <h2>Section ${sectionNum}</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p>
+
+    <p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
+  </div>
+</section>`;
+  document
+    .querySelector("main")
+    .insertAdjacentHTML("beforeend", sectionContent);
+};
 
 /**
  * End Global Variables
- * Start Helper Functions
- *
- */
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
  */
 
 // build the nav
-const addSection = function () {
-  sectionNum++;
-  let sectionContent = `<li><a data-section="section${sectionNum}" class="menu__link">Section ${sectionNum}</a></li>`;
-  document.querySelector("ul").insertAdjacentHTML("beforeend", sectionContent);
-};
-for (let i = 1; i < 5; i++) addSection();
+
+for (let i = 1; i < 5; i++) addNavSection();
+
 // Add class 'active' to section when near top of viewport
 
-function viewPort(inView) {
-  inView.forEach(function (ele) {
-    if (ele.isIntersecting) {
-      ele.target.classList.add("your-active-class");
-    } else {
-      ele.target.classList.remove("your-active-class");
-    }
-  });
-}
-
-let options = {
-  threshold: [0.6],
+let obs = function () {
+  let sections = document.querySelectorAll("section");
+  function viewPort(inView) {
+    inView.forEach(function (ele) {
+      let aClass = document.querySelector(`[data-section=${ele.target.id}]`);
+      if (ele.isIntersecting) {
+        ele.target.classList.add("your-active-class");
+        aClass.classList.add("active");
+      } else {
+        ele.target.classList.remove("your-active-class");
+        aClass.classList.remove("active");
+      }
+    });
+  }
+  
+  let options = {
+    threshold: [0.6],
+  };
+  
+  let observer = new IntersectionObserver(viewPort, options);
+  
+    sections.forEach(function (section) {
+    observer.observe(section);
+  })
 };
+obs();
 
-let observer = new IntersectionObserver(viewPort, options);
-
-for (let section of sections) {
-  observer.observe(section);
-}
-
-
-// Scroll to anchor ID using scrollTO event
-let links = document.querySelectorAll(".menu__link");
-links.forEach(function (link) {
-  link.addEventListener("click", function () {
-    let scrollSection = document.getElementById(
-      link.getAttribute("data-section")
-    );
-    scrollSection.scrollIntoView({ behavior:"smooth",block:"start" });
+// Scroll to section on link click
+function scrollTo() {
+  let links = document.querySelectorAll(".menu__link");
+  links.forEach(function scroll(link) {
+    link.addEventListener("click", function () {
+      let scrollSection = document.getElementById(
+        link.getAttribute("data-section")
+      );
+      scrollSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
-});
-/**
- * End Main Functions
- * Begin Events
- *
- */
-
-// Build menu
+}
+scrollTo();
+// Build add section button
+  document.getElementById("button").addEventListener("click", function () {
+    addNavSection();
+    addSection();
+    scrollTo();
+    obs();
+  });
 
 // Scroll to section on link click
 
