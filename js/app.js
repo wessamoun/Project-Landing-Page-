@@ -107,9 +107,23 @@ document.getElementById("button").addEventListener("click", function () {
 let hide;
 window.onscroll = function () {
   document.getElementById("page__header").style.display = "block";
-  window.clearTimeout(hide)
+  window.clearTimeout(hide);
   hide = window.setTimeout(function () {
-      document.getElementById("page__header").style.display = "none";
+    document.getElementById("page__header").style.display = "none";
   }, 5000);
+  console.log(window.scrollY)
 };
+
+
+// Add a scroll to top button on the page
+document.querySelector(".icon").addEventListener("click", function () {
+  window.scroll({ top: 0, behavior: "smooth" });
+});
+window.onscroll = function () {
+if (window.scrollY >= (0.9 * document.querySelector("main").scrollHeight)) {
+  document.querySelector(".icon").style.display = "block"
+} else {
+  document.querySelector(".icon").style.display = "none"
+}
+}
 

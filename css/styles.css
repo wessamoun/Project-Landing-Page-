@@ -240,3 +240,19 @@ section.your-active-class .landing__container::after {
     height: 60px;
     cursor: pointer;
 }
+
+
+.icon {
+    height: 50px;
+    width: 50px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    position: fixed;
+    top: 90%;
+    left: 90%;
+    cursor: pointer;
+}
