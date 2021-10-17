@@ -65,16 +65,16 @@ let obs = function () {
       }
     });
   }
-  
+
   let options = {
     threshold: [0.6],
   };
-  
+
   let observer = new IntersectionObserver(viewPort, options);
-  
-    sections.forEach(function (section) {
+
+  sections.forEach(function (section) {
     observer.observe(section);
-  })
+  });
 };
 obs();
 
@@ -92,13 +92,24 @@ function scrollTo() {
 }
 scrollTo();
 // Build add section button
-  document.getElementById("button").addEventListener("click", function () {
-    addNavSection();
-    addSection();
-    scrollTo();
-    obs();
-  });
+document.getElementById("button").addEventListener("click", function () {
+  addNavSection();
+  addSection();
+  scrollTo();
+  obs();
+});
 
 // Scroll to section on link click
 
 // Set sections as active
+
+// Hide fixed navigation bar while not scrolling
+let hide;
+window.onscroll = function () {
+  document.getElementById("page__header").style.display = "block";
+  window.clearTimeout(hide)
+  hide = window.setTimeout(function () {
+      document.getElementById("page__header").style.display = "none";
+  }, 5000);
+};
+
