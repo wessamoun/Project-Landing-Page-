@@ -1,13 +1,16 @@
 # Landing Page Project
 
-## Table of Contents
+## Table of Technologies used to create the project
 
-* [Instructions](#instructions)
+* Html
+* CSS
+* Javascript
 
-## Instructions
+## Project description
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+It is a simple landing page have many sections with the abality of add more sections every section active when scroll to it, and we have a nav bar whcih declars the section and we can use to scroll to the section, at the end we have the footer with © Udacity and add section button.
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+## Sources 
+( I used it while working )
+* w3schools
+* MDN Web Docs

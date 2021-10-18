@@ -11,11 +11,11 @@
 
 /* ---- Base Rules ---- */
 body {
-    background: rgb(136,203,171);
-    background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
+    background: white;
+    /* background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%); */
     margin: 0;
     font-family: 'Merriweather', serif;
-    color: #fff;
+    color: #333;
 }
 
 
@@ -34,15 +34,15 @@ h1 {
 }
 
 h2 {
-    border-bottom: 1px solid #cc1;
+    border-bottom: 1px solid #333;
     font-family: 'Oxygen', Sans-Serif;
     font-size: 3em;
-    color: #fff;
+    color: #333;
 }
 
 p {
     line-height: 1.6em;
-    color: #eee;
+    color: #333;
 }
 
 /* ---- Layout Rules ---- */
@@ -80,22 +80,47 @@ section {
     padding: 1em;
     font-weight: bold;
     text-decoration: none;
-    color: #000;
+    color: #333;
 }
 
 .navbar__menu .menu__link:hover {
     background: #333;
-    color: #fff;
+    color: white;
     transition: ease 0.3s all;
 }
 a.active {
     background: #333;
-    color: #fff !important;  
+    color: white !important;  
+}
+.bars {
+    color: #333;
+    text-align: center;
+    padding: 10px;
+}
+@media only screen and (min-width: 35em){
+    .bars {
+        display: none !important;
+    }
+}
+@media only screen and (max-width: 35em){
+    .clicked {
+        display: block;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color:#00f49e;
+    }
+    ul {
+        display: none;
+    }
+    li {
+        width: 100%;
+    }
 }
 
 /* Header Styles */
 .page__header {
-    background: #fff;
+    background: #00f49e;
     position: fixed;
     top: 0;
     width: 100%;
@@ -104,13 +129,13 @@ a.active {
 
 /* Footer Styles */
 .page__footer {
-    background: #000;
+    background: #00f49e;
     padding: 3em;
-    color: #fff;
+    color: #333;
 }
 
 .page__footer p{
-    color: #fff;
+    color: #333;
 }
 
 
@@ -139,7 +164,7 @@ section:nth-of-type(even) .landing__container {
 /* Circles appear to be random do to use of :nth-of-type psuedo class */
 section:nth-of-type(odd) .landing__container::before {
     content: '';
-    background: rgba(255, 255, 255, 0.187);
+    background: rgba(8, 102, 21, 0.187);
     position: absolute;
     z-index: -5;
     width: 20vh;
@@ -151,8 +176,8 @@ section:nth-of-type(odd) .landing__container::before {
 
 section:nth-of-type(even) .landing__container::before {
     content: '';
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+    background: rgb(231, 7, 7);
+    background: linear-gradient(0deg, rgb(236, 7, 7) 0%, rgba(255,255,255,.2) 100%);
     position: absolute;
     top: 3em;
     right: 3em;
@@ -199,8 +224,9 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: #00f49f70;
+    /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%); */
+    color: #333;
 }
 
 section.your-active-class .landing__container::before {
@@ -255,4 +281,11 @@ section.your-active-class .landing__container::after {
     top: 90%;
     left: 90%;
     cursor: pointer;
+    z-index: 4;
+}
+
+@media only screen and (max-width: 35em){
+    .icon {
+        left: 80%;
+    }
 }
